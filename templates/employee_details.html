@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали сотрудника</title>
+    <link rel="stylesheet" href="/static/details_style.css">
+</head>
+<body>
+    <h1>Детали сотрудника</h1>
+
+    <table>
+        <tr>
+            <th>Фамилия</th>
+            <td>{{ employee.Familiya }}</td>
+        </tr>
+        <tr>
+            <th>Имя</th>
+            <td>{{ employee.Imya }}</td>
+        </tr>
+        <tr>
+            <th>Отчество</th>
+            <td>{{ employee.Otchestvo }}</td>
+        </tr>
+        <tr>
+            <th>Дата рождения</th>
+            <td>{{ employee.DateOfBirth.strftime('%Y-%m-%d') }}</td>
+        </tr>
+        <tr>
+            <th>Адрес</th>
+            <td>{{ employee.Address }}</td>
+        </tr>
+        <tr>
+            <th>Телефон</th>
+            <td>{{ employee.Phone }}</td>
+        </tr>
+        <tr>
+            <th>Образование</th>
+            <td>{{ employee.EducationLevel }}</td>
+        </tr>
+        <tr>
+            <th>Рейтинг</th>
+            <td>{{ employee.Rating }}</td>
+        </tr>
+        <tr>
+            <th>Дата приема</th>
+            <td>{{ employee.DatePriem.strftime('%Y-%m-%d') }}</td>
+        </tr>
+        <tr>
+            <th>Дата увольнения</th>
+            <td>{{ employee.DateUvol.strftime('%Y-%m-%d') if employee.DateUvol else 'N/A' }}</td>
+        </tr>
+        <tr>
+            <th>Комментарий</th>
+            <td>{{ employee.Comment }}</td>
+        </tr>
+    </table>
+
+    <h2>Другая информация</h2>
+
+    <h3>Образование</h3>
+    <p>{{ education.EducationInstitute }} ({{ education.EducationYearFinish }}), {{ education.EducationSpec }} ({{ education.EducationQual }})</p>
+
+    <h3>Банковская карта</h3>
+    <p>{{ bank_card.NumberBankKar }} ({{ bank_card.Bank }})</p>
+
+    <h3>Должность</h3>
+    <p>{{ position.Rank }}, Зарплата: {{ position.Wage }}</p>
+
+    <a href="/">Вернуться к списку сотрудников</a>
+</body>
+</html>

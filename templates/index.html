@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список сотрудников</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Сотрудники</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ФАМИЛИЯ</th>
+                <th>ИМЯ</th>
+                <th>ОТЧЕСТВО</th>
+                <th>ДАТА РОЖДЕНИЯ</th>
+                <th>АДРЕС</th>
+                <th>ТЕЛЕФОН</th>
+                <th>ОБРАЗОВАНИЕ</th>
+                <th>РЕЙТИНГ</th>
+                <th>ДАТА ПРИЕМА</th>
+                <th>ДАТА УВОЛЬНЕНИЯ</th>
+                <th>КОММЕНТАРИЙ</th>
+                <th>ДЕЙСТВИЯ</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.RegNumber }}</td>
+                    <td>{{ employee.Familiya }}</td>
+                    <td>{{ employee.Imya }}</td>
+                    <td>{{ employee.Otchestvo }}</td>
+                    <td>{{ employee.DateOfBirth.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ employee.Address }}</td>
+                    <td>{{ employee.Phone }}</td>
+                    <td>{{ employee.EducationLevel }}</td>
+                    <td>{{ employee.Rating }}</td>
+                    <td>{{ employee.DatePriem.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ employee.DateUvol.strftime('%Y-%m-%d') if employee.DateUvol else 'N/A' }}</td>
+                    <td>{{ employee.Comment }}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <a href="/details/{{ employee.RegNumber }}" class="details-button">Подробнее</a>
+                            <a href="/edit/{{ employee.RegNumber }}" class="edit-button">Изменить</a>
+                            <a href="/delete/{{ employee.RegNumber }}" class="delet-button">Удалить</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="button-container">
+        <a href="/add" class="add-employee">Добавить нового сотрудника</a>
+    </div>
+</body>
+</html>

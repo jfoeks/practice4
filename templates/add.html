@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Добавить Сотрудника</title>
+</head>
+<body>
+    <h1>Добавить Сотрудника</h1>
+    <form method="post" action="/add">
+        <!-- Данные для таблицы Employee -->
+        <label for="familiya">Фамилия:</label><br>
+        <input type="text" id="familiya" name="familiya" required><br>
+
+        <label for="imya">Имя:</label><br>
+        <input type="text" id="imya" name="imya" required><br>
+
+        <label for="otchestvo">Отчество:</label><br>
+        <input type="text" id="otchestvo" name="otchestvo" required><br>
+
+        <label for="date_of_birth">Дата рождения:</label><br>
+        <input type="date" id="date_of_birth" name="date_of_birth" required><br>
+
+        <label for="address">Адрес:</label><br>
+        <input type="text" id="address" name="address" required><br>
+
+        <label for="phone">Телефон:</label><br>
+        <input type="text" id="phone" name="phone" required><br>
+
+        <label for="education_level">Уровень образования:</label><br>
+        <input type="text" id="education_level" name="education_level" required><br>
+
+        <label for="rating">Рейтинг:</label><br>
+        <input type="number" id="rating" name="rating" required><br>
+
+        <label for="date_priem">Дата приема:</label><br>
+        <input type="date" id="date_priem" name="date_priem" required><br>
+
+        <label for="date_uvol">Дата увольнения (если есть):</label><br>
+        <input type="date" id="date_uvol" name="date_uvol"><br>
+
+        <label for="comment">Комментарий:</label><br>
+        <textarea id="comment" name="comment"></textarea><br>
+
+        <!-- Данные для таблицы Education -->
+        <h2>Образование</h2>
+        <label for="education_spec">Специальность:</label><br>
+        <input type="text" id="education_spec" name="education_spec" required><br>
+
+        <label for="education_qual">Квалификация:</label><br>
+        <input type="text" id="education_qual" name="education_qual" required><br>
+
+        <label for="education_institute">Учебное заведение:</label><br>
+        <input type="text" id="education_institute" name="education_institute" required><br>
+
+        <label for="education_year_finish">Год окончания:</label><br>
+        <input type="number" id="education_year_finish" name="education_year_finish" required><br>
+
+        <!-- Данные для таблицы BankCards -->
+        <h2>Банковская карта</h2>
+        <label for="number_bank_kar">Номер карты:</label><br>
+        <input type="text" id="number_bank_kar" name="number_bank_kar" required><br>
+
+        <label for="bank">Банк:</label><br>
+        <input type="text" id="bank" name="bank" required><br>
+
+        <!-- Данные для таблицы Positions -->
+        <h2>Должность</h2>
+        <label for="rank">Ранг:</label><br>
+        <input type="text" id="rank" name="rank" required><br>
+
+        <label for="wage">Зарплата:</label><br>
+        <input type="number" step="0.01" id="wage" name="wage" required><br>
+
+        <!-- Данные для таблицы EmployeePositions -->
+        <h2>Должность сотрудника</h2>
+        <label for="discharge">Разряд:</label><br>
+        <input type="number" id="discharge" name="discharge" required><br>
+
+        <!-- Данные для таблицы Rating -->
+        <h2>Рейтинг</h2>
+        <label for="employee_rating">Рейтинг сотрудника:</label><br>
+        <input type="number" id="employee_rating" name="employee_rating" required><br>
+
+        <!-- Данные для таблицы Documents -->
+        <h2>Документы</h2>
+        <label for="document_type">Тип документа:</label><br>
+        <input type="text" id="document_type" name="document_type" required><br>
+
+        <label for="document_seria">Серия документа:</label><br>
+        <input type="text" id="document_seria" name="document_seria" required><br>
+
+        <label for="document_number">Номер документа:</label><br>
+        <input type="text" id="document_number" name="document_number" required><br>
+
+        <label for="date_document">Дата выдачи:</label><br>
+        <input type="date" id="date_document" name="date_document" required><br>
+
+        <label for="document_who">Кем выдан:</label><br>
+        <input type="text" id="document_who" name="document_who" required><br>
+
+        <!-- Данные для таблицы IdentificationInfo -->
+        <h2>Идентификационная информация</h2>
+        <label for="inn">ИНН:</label><br>
+        <input type="number" id="inn" name="inn" required><br>
+
+        <label for="snils">СНИЛС:</label><br>
+        <input type="text" id="snils" name="snils" required><br>
+
+        <button type="submit">Добавить</button>
+    </form>
+</body>
+</html>

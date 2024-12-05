@@ -1,0 +1,171 @@
+/* Общий стиль */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #444;
+}
+
+/* Стили для формы */
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+    color: #555;
+}
+
+input, textarea, button, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Таблица сотрудников */
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Кнопки действий */
+form button {
+    width: auto;
+    padding: 8px 12px;
+    margin: 5px 0;
+}
+
+/* Контейнер для кнопок действий */
+.action-buttons {
+    display: flex;
+    flex-direction: column; /* Располагаем кнопки вертикально */
+    gap: 10px; /* Отступ между кнопками */
+    width: 100%; /* Ширина контейнера на всю форму */
+    align-items: stretch; /* Заставляем кнопки растягиваться на всю ширину */
+}
+
+/* Стили для кнопок внутри формы */
+.action-buttons button {
+    width: 100%; /* Кнопки занимают всю ширину */
+    padding: 12px; /* Отступы внутри кнопок */
+    font-size: 16px; /* Размер шрифта для кнопок */
+    text-align: center; /* Текст по центру */
+    border-radius: 5px; /* Закругленные углы */
+    border: 1px solid #ccc; /* Граница */
+    cursor: pointer; /* Курсор в виде указателя */
+    transition: background-color 0.3s ease; /* Плавный переход при наведении */
+}
+
+/* Изменение фона кнопок при наведении */
+.action-buttons button:hover {
+    background-color: #ff0000;
+    color: white;
+}
+
+/* Ссылки */
+a {
+    display: inline-block;
+    margin: 20px auto;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Контейнер для кнопки */
+.button-container {
+    display: flex;
+    justify-content: center; /* Выравнивает по горизонтали */
+    align-items: flex-start; /* Выравнивает по вертикали */
+    height: 100vh; /* Задает высоту контейнера как 100% от высоты экрана */
+    width: 100%; /* Задает ширину контейнера */
+}
+
+/* Кнопка добавления сотрудника */
+.add-employee {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.add-employee:hover {
+    background-color: #218838;
+}}
+/* Стили для кнопки редактирования */
