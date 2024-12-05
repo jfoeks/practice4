@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: fastapi-employee-app
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn main:app --host 0.0.0.0 --port 10000"
+    envVars:
+      - key: DATABASE_URL
+        value: "sqlite:///./database.db"
+    plans:
+      - free
+    regions:
+      - us-east
