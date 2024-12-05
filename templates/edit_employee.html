@@ -10,7 +10,6 @@
     <h1>Редактировать данные сотрудника</h1>
 
     <form method="POST">
-        <!-- Данные для таблицы Employee -->
         <label for="familiya">Фамилия:</label>
         <input type="text" id="familiya" name="familiya" value="{{ employee.Familiya }}" required>
 
@@ -44,7 +43,6 @@
         <label for="comment">Комментарий:</label>
         <textarea id="comment" name="comment">{{ employee.Comment }}</textarea>
 
-        <!-- Данные для таблицы Education -->
         <h2>Образование</h2>
         <label for="education_spec">Специальность:</label>
         <input type="text" id="education_spec" name="education_spec" value="{{ education.EducationSpec }}" required>
@@ -58,7 +56,6 @@
         <label for="education_year_finish">Год окончания:</label>
         <input type="number" id="education_year_finish" name="education_year_finish" value="{{ education.EducationYearFinish }}" required>
 
-        <!-- Данные для таблицы BankCards -->
         <h2>Банковская карта</h2>
         <label for="number_bank_kar">Номер карты:</label>
         <input type="text" id="number_bank_kar" name="number_bank_kar" value="{{ bank_card.NumberBankKar }}" required>
@@ -66,7 +63,6 @@
         <label for="bank">Банк:</label>
         <input type="text" id="bank" name="bank" value="{{ bank_card.Bank }}" required>
 
-        <!-- Данные для таблицы Positions -->
         <h2>Должность</h2>
         <label for="rank">Ранг:</label>
         <input type="text" id="rank" name="rank" value="{{ position.Rank }}" required>
@@ -74,12 +70,10 @@
         <label for="wage">Зарплата:</label>
         <input type="number" step="0.01" id="wage" name="wage" value="{{ position.Wage }}" required>
 
-        <!-- Данные для таблицы EmployeePositions -->
         <h2>Должность сотрудника</h2>
         <label for="discharge">Разряд:</label>
         <input type="number" id="discharge" name="discharge" value="{{ employee_position.Discharge }}" required>
 
-        <!-- Данные для таблицы Documents -->
         <h2>Документы</h2>
         <label for="document_type">Тип документа:</label>
         <input type="text" id="document_type" name="document_type" value="{{ document.DocumentType }}" required>
