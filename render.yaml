@@ -7,7 +7,3 @@ services:
     envVars:
       - key: DATABASE_URL
         value: "sqlite:///./database.db"
-    plans:
-      - free
-    regions:
-      - us-east
