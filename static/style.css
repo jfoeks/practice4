@@ -1,171 +1,216 @@
-/* Общий стиль */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5;
-    color: #333;
 }
 
-h1 {
+.main-title {
     text-align: center;
-    margin: 20px 0;
-    color: #444;
+    color: #333;
+    padding: 20px 0;
+    background-color: #505050;
+    color: white;
 }
 
-/* Стили для формы */
-form {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-label {
-    font-weight: bold;
-    margin-top: 10px;
-    display: block;
-    color: #555;
-}
-
-input, textarea, button, select {
+.styled-table {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-input:focus, textarea:focus, select:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
-}
-
-button {
-    background-color: #007bff;
-    color: #fff;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-textarea {
-    resize: vertical;
-}
-
-/* Таблица сотрудников */
-table {
-    width: 90%;
-    margin: 20px auto;
     border-collapse: collapse;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-table th, table td {
-    padding: 12px 15px;
+    margin: 25px 0;
+    font-size: 18px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9; /* Светлый фон для всей таблицы */
+    border: 1px solid #ddd; /* Рамка вокруг таблицы */
 }
 
-table th {
-    background-color: #007bff;
-    color: #fff;
-    font-weight: bold;
-    text-transform: uppercase;
+.styled-table th {
+    background-color: #007bff; /* Синий фон для заголовков таблицы */
+    color: white; /* Белый текст для заголовков */
+    text-align: center; /* Центрирование текста в заголовке */
+    padding: 12px 15px;
 }
 
-table tr:hover {
+.styled-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd; /* Тонкая рамка между ячейками */
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:hover {
     background-color: #f1f1f1;
 }
 
-table tr:last-child td {
-    border-bottom: none;
-}
-
-/* Кнопки действий */
-form button {
-    width: auto;
-    padding: 8px 12px;
-    margin: 5px 0;
-}
-
-/* Контейнер для кнопок действий */
-.action-buttons {
+.actions-container {
     display: flex;
-    flex-direction: column; /* Располагаем кнопки вертикально */
-    gap: 10px; /* Отступ между кнопками */
-    width: 100%; /* Ширина контейнера на всю форму */
-    align-items: stretch; /* Заставляем кнопки растягиваться на всю ширину */
+    flex-direction: column;
+    gap: 10px; /* Добавляем расстояние между кнопками */
 }
 
-/* Стили для кнопок внутри формы */
-.action-buttons button {
-    width: 100%; /* Кнопки занимают всю ширину */
-    padding: 12px; /* Отступы внутри кнопок */
-    font-size: 16px; /* Размер шрифта для кнопок */
-    text-align: center; /* Текст по центру */
-    border-radius: 5px; /* Закругленные углы */
-    border: 1px solid #ccc; /* Граница */
-    cursor: pointer; /* Курсор в виде указателя */
-    transition: background-color 0.3s ease; /* Плавный переход при наведении */
-}
-
-/* Изменение фона кнопок при наведении */
-.action-buttons button:hover {
-    background-color: #ff0000;
-    color: white;
-}
-
-/* Ссылки */
-a {
-    display: inline-block;
-    margin: 20px auto;
+.details-button,
+.edit-button,
+.delete-button {
+    display: block;
     text-align: center;
-    color: #007bff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s ease;
 }
 
-a:hover {
-    color: #0056b3;
+.details-button {
+    background-color: #007bff;
 }
 
-/* Контейнер для кнопки */
+.edit-button {
+    background-color: #007bff;
+}
+
+.delete-button {
+    background-color: #007bff;
+}
+
 .button-container {
-    display: flex;
-    justify-content: center; /* Выравнивает по горизонтали */
-    align-items: flex-start; /* Выравнивает по вертикали */
-    height: 100vh; /* Задает высоту контейнера как 100% от высоты экрана */
-    width: 100%; /* Задает ширину контейнера */
-}
-
-/* Кнопка добавления сотрудника */
-.add-employee {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
     text-align: center;
-    font-size: 18px;
-    transition: background-color 0.3s ease;
+    margin: 20px 0;
 }
 
-.add-employee:hover {
-    background-color: #218838;
-}}
-/* Стили для кнопки редактирования */
+.add-employee-button {
+    background-color: #28a745; /* Зеленый фон */
+    color: white; /* Белый текст */
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    border: 2px solid #28a745;
+}
+
+.add-employee-button:hover {
+    background-color: white; /* Белый фон при наведении */
+    color: #28a745; /* Зеленый текст */
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+    text-align: center;
+    font-size: 24px;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.form-section {
+    margin-bottom: 20px;
+}
+
+.form-section h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 15px;
+    border: 2px solid #929292;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+.form-button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: white;
+    color: #007bff;
+    border: 2px solid #007bff;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #929292;
+    border-radius: 4px;
+}
+
+.button-group {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.add-button,
+.save-button,
+.delete-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.add-button:hover,
+.save-button:hover,
+.delete-button:hover {
+    background-color: #0056b3;
+}
+
+.section-divider {
+    height: 1px;
+    background-color: #ddd;
+    margin: 20px 0;
+}

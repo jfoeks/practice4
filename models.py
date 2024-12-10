@@ -46,11 +46,6 @@ class BankCard(Base):
     NumberBankKar = Column(String(60))
     Bank = Column(String(60))
 
-class Rating(Base):
-    __tablename__ = "Ratings"
-    RatingID = Column(Integer, primary_key=True, autoincrement=True)
-    RegNumber = Column(Integer, ForeignKey("Employees.RegNumber"))
-    Rating = Column(Integer)
 
 class Document(Base):
     __tablename__ = "Documents"

@@ -59,13 +59,22 @@
     <h2>Другая информация</h2>
 
     <h3>Образование</h3>
-    <p>{{ education.EducationInstitute }} ({{ education.EducationYearFinish }}), {{ education.EducationSpec }} ({{ education.EducationQual }})</p>
+    <p>Название учебного заведения: {{ education.EducationInstitute }} (Год окончания: {{ education.EducationYearFinish }}), Специальность: {{ education.EducationSpec }} Квалификация: {{ education.EducationQual }}</p>
 
     <h3>Банковская карта</h3>
     <p>{{ bank_card.NumberBankKar }} ({{ bank_card.Bank }})</p>
 
     <h3>Должность</h3>
-    <p>{{ position.Rank }}, Зарплата: {{ position.Wage }}</p>
+    <p>Ранг:{{ position.Rank }}, Зарплата: {{ position.Wage }}</p>
+    <h3>Документы</h3>
+    <p>Тип документа: {{  document.DocumentType }}</p>
+    <p>Серия: {{  document.DocumentSeria }}</p>
+    <p>Номер: {{  document.DocumentNumber }}</p>
+    <p>Дата выдачи:{{  document.DateDocument }}</p>
+    <p>Кем выдан: {{  document.DocumentWho }}</p>
+
+    <p>ИНН:{{  identification_info.Inn }}</p>
+    <p>СНИЛС: {{  identification_info.Snils }}</p>
 
     <a href="/">Вернуться к списку сотрудников</a>
 </body>

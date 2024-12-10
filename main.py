@@ -63,8 +63,6 @@ async def add_employee(
     # Данные для таблицы EmployeePositions
     discharge: int = Form(...),
 
-    # Данные для таблицы Rating
-    employee_rating: int = Form(...),
 
     # Данные для таблицы Documents
     document_type: str = Form(...),
@@ -129,13 +127,6 @@ async def add_employee(
     )
     db.add(new_employee_position)
 
-    # Запись в таблицу Rating
-    new_rating = Rating(
-        RegNumber=new_employee.RegNumber,
-        Rating=employee_rating
-    )
-    db.add(new_rating)
-
     # Запись в таблицу Documents
     new_document = Document(
         RegNumber=new_employee.RegNumber,
@@ -166,7 +157,6 @@ async def delete_employee(regnumber: int, db: Session = Depends(get_db)):
     employee.append(db.query(EmployeePosition).filter(EmployeePosition.RegNumber == regnumber).first())
     employee.append(db.query(BankCard).filter(BankCard.RegNumber == regnumber).first())
     employee.append(db.query(Position).filter(Position.PositionID == regnumber).first())
-    employee.append(db.query(Rating).filter(Rating.RegNumber == regnumber).first())
     employee.append(db.query(Document).filter(Document.RegNumber == regnumber).first())
     employee.append(db.query(IdentificationInfo).filter(IdentificationInfo.RegNumber == regnumber).first())
     if employee:
@@ -320,6 +310,9 @@ async def employee_details(request: Request, regnumber: int, db: Session = Depen
         .filter(EmployeePosition.RegNumber == regnumber)
         .first()
     )
+    employee_position = db.query(EmployeePosition).filter(EmployeePosition.RegNumber == regnumber).first()
+    document = db.query(Document).filter(Document.RegNumber == regnumber).first()
+    identification_info = db.query(IdentificationInfo).filter(IdentificationInfo.RegNumber == regnumber).first()
 
     if not employee:
         raise HTTPException(status_code=404, detail="Сотрудник не найден")
@@ -329,5 +322,8 @@ async def employee_details(request: Request, regnumber: int, db: Session = Depen
         "employee": employee,
         "education": education,
         "bank_card": bank_card,
-        "position": position
+        "position": position,
+        "employee_position": employee_position,
+        "document": document,
+        "identification_info": identification_info
     })
