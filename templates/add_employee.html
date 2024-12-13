@@ -7,26 +7,17 @@
 <body>
     <div class="form-container">
         <h1 class="form-title">Добавить Сотрудника</h1>
-        <form method="post" action="/add">
+        <form method="post" action="/add_employee">
             <div class="form-section">
-                <h2>Общая информация</h2>
-                <label for="familiya">Фамилия:</label>
-                <input type="text" id="familiya" name="familiya" required>
-
-                <label for="imya">Имя:</label>
-                <input type="text" id="imya" name="imya" required>
-
-                <label for="otchestvo">Отчество:</label>
-                <input type="text" id="otchestvo" name="otchestvo" required>
-
-                <label for="date_of_birth">Дата рождения:</label>
-                <input type="date" id="date_of_birth" name="date_of_birth" required>
-
-                <label for="address">Адрес:</label>
-                <input type="text" id="address" name="address" required>
-
-                <label for="phone">Телефон:</label>
-                <input type="text" id="phone" name="phone" required>
+                <h2>Сотрудник</h2>
+                <select id="individual_id" name="individual_id" required>
+                    <option value="" disabled selected>Выберите</option>
+                    {% for individual in individuals %}
+                    <option value="{{ individual.IndividualsID }}">
+                        {{ individual.Familiya }} {{ individual.Imya }} {{ individual.Otchestvo }}
+                    </option>
+                {% endfor %}
+            </select>
             </div>
 
             <div class="form-section">
@@ -44,11 +35,14 @@
                 <label for="education_spec">Специальность:</label>
                 <input type="text" id="education_spec" name="education_spec" required>
 
+
                 <label for="education_qual">Квалификация:</label>
                 <input type="text" id="education_qual" name="education_qual" required>
 
+
                 <label for="education_institute">Учебное заведение:</label>
                 <input type="text" id="education_institute" name="education_institute" required>
+
 
                 <label for="education_year_finish">Год окончания:</label>
                 <input type="number" id="education_year_finish" name="education_year_finish" required>
@@ -60,7 +54,12 @@
                 <input type="text" id="number_bank_kar" name="number_bank_kar" required>
 
                 <label for="bank">Банк:</label>
-                <input type="text" id="bank" name="bank" required>
+                <select id="bank" name="bank" required>
+                    <option value="" disabled selected>Выберите банк</option>
+                    <option value="Сбербанк">Сбербанк</option>
+                    <option value="Альфа-банк">Альфа-банк</option>
+                    <option value="Тинькофф">Тинькофф</option>
+                </select>
             </div>
 
             <div class="form-section">
@@ -93,7 +92,11 @@
             <div class="form-section">
                 <h2>Документы</h2>
                 <label for="document_type">Тип документа:</label>
-                <input type="text" id="document_type" name="document_type" required>
+                <select id="document_type" name="document_type" required>
+                    <option value="" disabled selected>Выберите документ</option>
+                    <option value="Паспорт">Паспорт</option>
+                    <option value="Свидетельство о рождении гражданина РФ">Свидетельство о рождении гражданина РФ</option>
+                </select>
 
                 <label for="document_seria">Серия документа:</label>
                 <input type="text" id="document_seria" name="document_seria" required>

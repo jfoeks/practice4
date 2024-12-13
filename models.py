@@ -1,20 +1,32 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, DECIMAL
 from database import Base
+from sqlalchemy.orm import relationship
 
-class Employee(Base):
-    __tablename__ = "Employees"
-    RegNumber = Column(Integer, primary_key=True, index=True,autoincrement=True)
+
+class Individuals(Base):
+    __tablename__ = "Individuals"
+    IndividualsID = Column(Integer, primary_key=True, autoincrement=True)
     Familiya = Column(String(25))
     Imya = Column(String(25))
     Otchestvo = Column(String(25))
     DateOfBirth = Column(DateTime)
     Address = Column(String(255))
     Phone = Column(String(15))
+
+    employees = relationship("Employee", back_populates="individual")
+
+class Employee(Base):
+    __tablename__ = "Employees"
+    RegNumber = Column(Integer, primary_key=True, index=True,autoincrement=True)
+    IndividualsID = Column(Integer, ForeignKey("Individuals.IndividualsID"))
     EducationLevel = Column(String(255))
     Rating = Column(Integer)
     DatePriem = Column(DateTime)
     DateUvol = Column(DateTime)
     Comment = Column(String(255))
+    Inn = Column(Integer)
+    Snils = Column(String(11))
+    individual = relationship("Individuals", back_populates="employees")
 
 class Education(Base):
     __tablename__ = "Education"
@@ -56,10 +68,3 @@ class Document(Base):
     DocumentNumber = Column(String(10))
     DateDocument = Column(DateTime)
     DocumentWho = Column(String(255))
-
-class IdentificationInfo(Base):
-    __tablename__ = "IdentificationInfo"
-    IdentificationID = Column(Integer, primary_key=True, autoincrement=True)
-    RegNumber = Column(Integer, ForeignKey("Employees.RegNumber"))
-    Inn = Column(Integer)
-    Snils = Column(String(11))

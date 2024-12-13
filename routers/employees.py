@@ -1,39 +1,19 @@
-from fastapi import FastAPI, Request, Form, Depends
+from fastapi import APIRouter, Request, Form, Depends, HTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
-from database import engine, SessionLocal
-from models import *
-from fastapi.staticfiles import StaticFiles
+from database import get_db
+from models import Employee, Education, BankCard, Position, EmployeePosition, Document
 from datetime import datetime
 
-# Автоматическое создание таблиц
-Base.metadata.create_all(bind=engine)
+router = APIRouter()
 
-app = FastAPI()
-templates = Jinja2Templates(directory="templates")
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-# Зависимость для работы с сессией БД
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-@app.get("/employees", response_class=HTMLResponse)
-async def read_employees(request: Request, db: Session = Depends(get_db)):
-    employees = db.query(Employee).all()
-    return templates.TemplateResponse("employee.html", {"request": request, "employees": employees})
-
-@app.get("/add_employee")
+@router.get("/add_employee")
 async def get_add_employee_form(request: Request, db: Session = Depends(get_db)):
     # Получаем список физических лиц
     individuals = db.query(Individuals).all()
     return templates.TemplateResponse("add_employee.html", {"request": request, "individuals": individuals})
 
-@app.post("/add_employee")
+@router.post("/add_employee")
 async def add_employee(
     # Выбор физического лица из списка
     individual_id: int = Form(...),  # ID физического лица из таблицы Individuals
@@ -82,7 +62,13 @@ async def add_employee(
 
     # Создаем запись в таблице Employee, используя данные из физического лица
     new_employee = Employee(
-        IndividualsID=individual.IndividualsID,
+        IndividualsID=individual.IndividualsID,  # Связь с таблицей Individuals
+        Familiya=individual.Familiya,
+        Imya=individual.Imya,
+        Otchestvo=individual.Otchestvo,
+        DateOfBirth=individual.DateOfBirth,
+        Address=individual.Address,
+        Phone=individual.Phone,
         EducationLevel=education_level,
         Rating=rating,
         DatePriem=datetime.strptime(date_priem, "%Y-%m-%d"),
@@ -141,89 +127,9 @@ async def add_employee(
 
     # Финальное сохранение данных
     db.commit()
-    return RedirectResponse("/individual", status_code=303)
+    return RedirectResponse("/", status_code=303)
 
-
-@app.get("/add_individual")
-async def get_add_employee_form(request: Request, db: Session = Depends(get_db)):
-    return templates.TemplateResponse("add_individual.html", {"request": request})
-@app.post("/add_individual")
-async def add_individual(
-    familiya: str = Form(...),
-    imya: str = Form(...),
-    otchestvo: str = Form(None),
-    date_of_birth: str = Form(...),
-    address: str = Form(...),
-    phone: str = Form(...),
-    db: Session = Depends(get_db)
-):
-    new_individual = Individuals(
-        Familiya=familiya,
-        Imya=imya,
-        Otchestvo=otchestvo,
-        DateOfBirth=datetime.strptime(date_of_birth, "%Y-%m-%d"),
-        Address=address,
-        Phone=phone
-    )
-    db.add(new_individual)
-    db.commit()
-    return RedirectResponse("/individual", status_code=303)
-
-
-@app.post("/edit_individual/{individual_id}")
-async def edit_individual(
-        individual_id: int,
-        familiya: str = Form(...),
-        imya: str = Form(...),
-        otchestvo: str = Form(...),
-        date_of_birth: str = Form(...),
-        address: str = Form(...),
-        phone: str = Form(...),
-        db: Session = Depends(get_db)
-):
-    # Получаем запись физического лица из базы
-    individual = db.query(Individuals).filter(Individuals.IndividualsID == individual_id).first()
-    if not individual:
-        raise HTTPException(status_code=404, detail="Физическое лицо не найдено")
-
-    # Обновление данных физического лица
-    individual.Familiya = familiya
-    individual.Imya = imya
-    individual.Otchestvo = otchestvo
-    individual.DateOfBirth = datetime.strptime(date_of_birth, "%Y-%m-%d")
-    individual.Address = address
-    individual.Phone = phone
-
-    # Сохранение изменений
-    db.commit()
-
-    return RedirectResponse("/individual", status_code=303)
-
-@app.get("/edit_individual/{individual_id}", response_class=HTMLResponse)
-async def edit_individual_form(request: Request, individual_id: int, db: Session = Depends(get_db)):
-    # Извлекаем физическое лицо
-    individual = db.query(Individuals).filter(Individuals.IndividualsID == individual_id).first()
-    if not individual:
-        raise HTTPException(status_code=404, detail="Физическое лицо не найдено")
-
-    return templates.TemplateResponse("edit_individual.html", {
-        "request": request,
-        "individual": individual
-    })
-@app.get("/individual")
-async def get_add_individual_form(request: Request, db: Session = Depends(get_db)):
-    individuals = db.query(Individuals).all()
-    return templates.TemplateResponse("individual.html", {"request": request,"individuals":individuals})
-
-
-@app.get("/delete_individual/{id}")
-async def delete_individual(id: int, db: Session = Depends(get_db)):
-    individual = (db.query(Individuals).filter(Individuals.IndividualsID == id).first())
-
-    db.delete(individual)
-    db.commit()
-    return RedirectResponse("/individual", status_code=303)
-@app.get("/delete/{regnumber}")
+@router.get("/delete/{regnumber}")
 async def delete_employee(regnumber: int, db: Session = Depends(get_db)):
     employee = []
     employee.append(db.query(Employee).filter(Employee.RegNumber == regnumber).first())
@@ -236,10 +142,10 @@ async def delete_employee(regnumber: int, db: Session = Depends(get_db)):
         for i in employee:
             db.delete(i)
         db.commit()
-    return RedirectResponse("/employee", status_code=303)
+    return RedirectResponse("/", status_code=303)
 
 
-@app.get("/edit/{regnumber}", response_class=HTMLResponse)
+@router.get("/edit/{regnumber}", response_class=HTMLResponse)
 async def edit_employee_form(request: Request, regnumber: int, db: Session = Depends(get_db)):
     # Извлекаем сотрудника
     employee = db.query(Employee).filter(Employee.RegNumber == regnumber).first()
@@ -272,9 +178,7 @@ async def edit_employee_form(request: Request, regnumber: int, db: Session = Dep
         "document": document,
     })
 
-
-
-@app.post("/edit/{regnumber}")
+@router.post("/edit/{regnumber}")
 async def edit_employee(
         regnumber: int,
         address: str = Form(...),
@@ -365,9 +269,9 @@ async def edit_employee(
 
     # Сохранение изменений
     db.commit()
-    return RedirectResponse("/employee", status_code=303)
+    return RedirectResponse("/", status_code=303)
 
-@app.get("/details/{regnumber}", response_class=HTMLResponse)
+@router.get("/details/{regnumber}", response_class=HTMLResponse)
 async def employee_details(request: Request, regnumber: int, db: Session = Depends(get_db)):
     employee = db.query(Employee).filter(Employee.RegNumber == regnumber).first()
     education = db.query(Education).filter(Education.RegNumber == regnumber).first()
@@ -381,7 +285,6 @@ async def employee_details(request: Request, regnumber: int, db: Session = Depen
     employee_position = db.query(EmployeePosition).filter(EmployeePosition.RegNumber == regnumber).first()
     document = db.query(Document).filter(Document.RegNumber == regnumber).first()
 
-
     if not employee:
         raise HTTPException(status_code=404, detail="Сотрудник не найден")
 
@@ -394,10 +297,3 @@ async def employee_details(request: Request, regnumber: int, db: Session = Depen
         "employee_position": employee_position,
         "document": document,
     })
-
-@app.get("/help")
-async def get_add_employee_form(request: Request):
-    return templates.TemplateResponse("help.html", {"request": request})
-@app.get("/")
-async def get_add_employee_form(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
