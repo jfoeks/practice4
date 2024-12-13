@@ -236,7 +236,7 @@ async def delete_employee(regnumber: int, db: Session = Depends(get_db)):
         for i in employee:
             db.delete(i)
         db.commit()
-    return RedirectResponse("/employee", status_code=303)
+    return RedirectResponse("/employees", status_code=303)
 
 
 @app.get("/edit/{regnumber}", response_class=HTMLResponse)
