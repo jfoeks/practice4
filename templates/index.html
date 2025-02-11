@@ -1,34 +1,31 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добро пожаловать!</title>
-    <link rel="stylesheet" href="/static/help.css">
-</head>
-<body>
-    <!-- Header Section -->
-    <header class="header">
-        <nav>
-            <a href="/">Главная</a>
-            <a href="/individual">Физ Лица</a>
-            <a href="/employees">Сотрудники</a>
-            <a href="/help">Помощь</a>
-        </nav>
-    </header>
+{% extends "base.html" %}
 
-    <!-- Welcome Section -->
-    <main>
-        <section class="welcome">
-            <h1>Добро пожаловать в систему управления персоналом!</h1>
-            <p>
-                Вы можете управлять информацией о физических лицах и сотрудниках вашего предприятия. Для начала работы воспользуйтесь кнопками навигации в верхнем меню.
-            </p>
-            <div class="button-container">
-                <a href="/individual" class="main-button">Перейти к физическим лицам</a>
-                <a href="/employees" class="main-button">Перейти к сотрудникам</a>
-            </div>
-        </section>
-    </main>
-</body>
-</html>
+{% block page_title %}Главная страница{% endblock %}
+
+{% block content %}
+<section class="hero" style="background-image: url('https://avatars.mds.yandex.net/i?id=2a00000194f12fd02e5fad33157b64c701cc-1342655-fast-images&n=13');">
+    <div class="hero-text">
+        <h1>Добро пожаловать в Колледж современных технологий и управления</h1>
+        <p>Будь готов к будущему вместе с нами!</p>
+        <button class="cta-btn">Узнать больше</button>
+    </div>
+</section>
+
+<section class="advantages">
+    <h2>Наши преимущества</h2>
+    <div class="advantage-grid">
+        <div class="advantage">
+            <img src="https://i.vuzopedia.ru/storage/app/uploads/public/651/84a/35c/65184a35ccfa8525911040.jpg" alt="Современные технологии обучения">
+            <p>Современные технологии обучения</p>
+        </div>
+        <div class="advantage">
+            <img src="https://wiseadvice-it.ru/upload/medialibrary/410/3.png" alt="Программы, соответствующие требованиям рынка">
+            <p>Программы, соответствующие требованиям рынка</p>
+        </div>
+        <div class="advantage">
+            <img src="https://avatars.mds.yandex.net/get-altay/1439437/2a0000016772cd46fb071ecb7679063001c5/XXXL" alt="Опытные преподаватели">
+            <p>Опытные преподаватели</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

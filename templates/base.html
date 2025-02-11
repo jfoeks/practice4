@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Официальный сайт Колледжа современных технологий и управления">
+    <meta name="keywords" content="колледж, образование, современные технологии, управление">
+    <meta name="author" content="КСТиУ">
+    <title>{% block page_title %}Колледж современных технологий и управления{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Верхнее меню -->
+    <header>
+        <nav class="top-menu">
+            <a href="/" class="logo">
+                <img src="https://avatars.dzeninfra.ru/get-zen_doc/4432928/pub_6511cf154fef207a4a93138a_6511d04fe66e023ea77a45fd/scale_1200" alt="Логотип Колледжа современных технологий и управления">
+            </a>
+            <ul class="menu">
+                <li><a href="/about">О колледже</a></li>
+                <li><a href="/programs">Программы</a></li>
+                <li><a href="/admission">Поступление</a></li>
+                <li><a href="/news">Новости</a></li>
+                <li><a href="/contacts">Контакты</a></li>
+            </ul>
+            <div class="contact-block">
+                <a href="tel:+78001234567">+7 (800) 123-45-67</a>
+                <button class="call-back-btn">Позвоните мне</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Основной контент -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Нижнее меню -->
+    <footer>
+        <div class="footer-content">
+            <ul class="footer-menu">
+                <li><a href="/privacy">Политика конфиденциальности</a></li>
+                <li><a href="/terms">Пользовательское соглашение</a></li>
+            </ul>
+            <div class="socials">
+                <a href="#"><img src="https://vkplay.ru/hotbox/content_files/news/2021/07/22/160f2ccbb82246718c950f4973b9181a.jpg" alt="Facebook"></a>
+                <a href="#"><img src="https://timeweb.com/ru/community/article/6c/6c542348a130bcf0910164460adba635.jpg" alt="ВКонтакте"></a>
+                <a href="#"><img src="https://habrastorage.org/webt/na/u6/gf/nau6gfnipejuzeczstgbuy_c554.png" alt="Instagram"></a>
+            </div>
+            <p>&copy; 2025 Колледж современных технологий и управления</p>
+        </div>
+    </footer>
+</body>
+</html>
